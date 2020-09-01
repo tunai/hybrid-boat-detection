@@ -2,7 +2,7 @@
 
 ### Robust Detection of Marine Vessels From Visual Time Series
 
-This repo contains the implementation of our work: **Robust Detection of Marine Vessels From Visual Time Series**, by Tunai Porto Marques et al., submitted to the 2021 Winter Conference on Applications of Computer Vision (WACV, January 5-9, 2021)
+This repo contains the implementation of our work: **Robust Detection of Marine Vessels From Visual Time Series**, by Tunai Porto Marques *et al.*, submitted to the 2021 Winter Conference on Applications of Computer Vision (WACV, January 5-9, 2021)
 
 ### Repo author
 
