@@ -1,4 +1,4 @@
-<img height="343px" width="680px" align="right" src="https://i.imgur.com/r7IpzX8.jpg">  
+<img height="171px" width="340px" align="right" src="https://i.imgur.com/r7IpzX8.jpg">  
 
 ### Robust Detection of Marine Vessels From Visual Time Series
 
