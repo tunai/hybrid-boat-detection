@@ -1,11 +1,11 @@
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from torchvision import transforms
-from utils import postProcessDetections, pickODModelParameters, pickDSMVModelParameters, createStrings,\
+from utils.utils import postProcessDetections, pickODModelParameters, pickDSMVModelParameters, createStrings,\
     filterDSMVresults, concatenateBB_OD_DSMV, mergeODandDSMV, createGroupsofThree
-from utils_XLSX import createXLSX, updateXLSX
-from utils_plotting import readAndPlotOD, readAndPlotMerged, showIMG, throwModelError
-from bigmm2 import DSMV
+from utils.utils_XLSX import createXLSX, updateXLSX
+from utils.utils_plotting import readAndPlotOD, readAndPlotMerged, showIMG, throwModelError
+from utils.bigmm2 import DSMV
 from config import init_config
 import numpy as np
 import shutil, sys, copy, os, time
@@ -36,12 +36,8 @@ if __name__ == '__main__':
                          config.OD_ylimit]  # range inside which the end-to-end object detector will perform detection.
     # usually focused on the lower part of the image (mid- and large-sized boats)
 
-    # Select the end-to-end object detection architecture to be used (pre-trained and offered by Facebook's detectron2):
-    # 1: F-RCNN R-101 FPN 3X, 2: F-RCNN R-50 FPN 3X, 3: F-RCNN X101-FPN 3X, 4: Cascade R-CNN R-50 FPN 3X
-    # 5: RetinaNet R-101 3X
-    modelNumber = 5
-
-    cfg = get_cfg()
+    # initialize the end-to-end object detector selected in the config
+    cfg = get_cfg()  # initializes a standard detectron2 config shell file
     merge_cfg, ODmodelWeights, ODmodelName = pickODModelParameters(config.OD_model_number)
     cfg.merge_from_file(merge_cfg)
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = config.OD_detection_threshold

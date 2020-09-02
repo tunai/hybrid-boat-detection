@@ -3,7 +3,7 @@ import xlsxwriter
 from datetime import datetime
 import torch
 import numpy as np
-from utils_plotting import *
+from utils.utils_plotting import *
 
 
 def postProcessDetections(det, threshold, validRange=0):
