@@ -49,6 +49,8 @@ The highlighted images showing the final output of detected boats are located in
 
 <img align="center" src="https://i.imgur.com/JvbjDZz.jpg">  
 
+Red bounding boxes indicate boats identified using small time series and a novel bi GMM system in the Detector of Small Marine Vessels (DSMV). Mid- and Large-sized boats are tipically recognized with the use of pre-trained end-to-end object detectors (yellow bounding boxes). The Hybrid system combined both outputs, resulting in a system capable of identifying boats ranging from pixel-level to very large.  
+
 The output folders also contain two *.xlsx* spreadsheets ([example](https://i.imgur.com/MXT3PQc.jpg)) that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates (note: **OD** indicates detection using pre-trained DL-based object detectors only, while **Hybrid** indicates the final, hybrid results). 
 
 #### Using your own data
