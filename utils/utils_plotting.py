@@ -1,3 +1,20 @@
+"""
+File name: utils_plotting.py
+Author: Tunai P. Marques
+Website: tunaimarques.com | github.com/tunai
+Date created: Jul 01 2020
+Date last modified: Nov 02 2020
+
+DESCRIPTION: implements a number of plotting functions to support the hybrid marine vessels detector. except for
+research purposes, we recommend that users do not modify this script.
+
+If this software proves to be useful to your work, please cite: "Tunai Porto Marques, Alexandra Branzan Albu,
+Patrick O'Hara, Norma Serra, Ben Morrow, Lauren McWhinnie, Rosaline Canessa. Robust Detection of Marine Vessels
+from Visual Time Series. In The IEEE Winter Conference on Applications of Computer Vision, 2021."
+
+"""
+
+
 import cv2
 from datetime import datetime
 import numpy as np
@@ -32,7 +49,7 @@ def plotAllBB(img,bb,color=(0,255,255),line=1,display=None, score=None, classes=
 
 def plotBB_BS_Result(img,bb,color=(0,255,255),line=1,
                      display=None, score=None, classes=None,
-             title="All Bounding Boxes", id = None):
+             title="All Bounding Boxes", img_id = None):
 
     placeHolderImg = img.copy()
 
@@ -45,11 +62,10 @@ def plotBB_BS_Result(img,bb,color=(0,255,255),line=1,
             cv2.putText(placeHolderImg, (str(round(score[i], 2)) + " C " + str(classes[i])), (current[0] - 10, current[1] - 10), 1,
             1, (0, 255, 255), 1)
 
-        if id is not None:
-            cv2.putText(placeHolderImg, id, (current[0] - 10, current[1] - 10), 1, 1, (0, 255, 255), 1)
+        if img_id is not None:
+            cv2.putText(placeHolderImg, img_id, (current[0] - 10, current[1] - 10), 1, 1, (0, 255, 255), 1)
 
     if display is not None:
-        print('damn')
         cv2.namedWindow(title, cv2.WINDOW_FULLSCREEN)
         cv2.moveWindow(title, 0, 0)
         cv2.imshow(title, placeHolderImg)
@@ -59,17 +75,16 @@ def plotBB_BS_Result(img,bb,color=(0,255,255),line=1,
     return placeHolderImg
 
 def showIMG(img, title = "image display"):
-    if(img.shape.__len__()==2):
-        if img.max()<=1:
+
+    if img.shape.__len__() == 2:
+        if img.max() <= 1:
             print("multiplying by 255 first...")
             img = img * 255
         img = cv2.cvtColor(img.astype(np.uint8),cv2.COLOR_GRAY2RGB)
 
-    if(img.dtype == 'int32'):
+    if img.dtype == 'int32':
         img = img.astype(np.uint8)
 
-    # cv2.namedWindow(title, cv2.WINDOW_FULLSCREEN)
-    # cv2.moveWindow(title, 0, 0)
     cv2.imshow(title, img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -213,35 +228,23 @@ def plotClassificationResults(imgs, preds, bbs, name):
         fwd = current[:,2]
 
         if preds[3*i] == 1:
-            #cv2.rectangle(imgs[0], (bwd[0], bwd[1]), (bwd[0] + bwd[2], bwd[1] + bwd[3]), (3, 3, 252), 1)
-            #cv2.putText(imgs[0], 'V', (bwd[0] - 5, bwd[1] - 5), 1, 1, (3, 3, 252), 1)
             cv2.rectangle(blend, (bwd[0], bwd[1]), (bwd[0] + bwd[2], bwd[1] + bwd[3]), (3, 3, 252), 1)
             cv2.putText(blend, 'V', (bwd[0] - 5, bwd[1] - 5), 1, 1, (3, 3, 252), 1)
         else:
-            #cv2.rectangle(imgs[0], (bwd[0], bwd[1]), (bwd[0] + bwd[2], bwd[1] + bwd[3]), (0, 255, 255), 1)
-            #cv2.putText(imgs[0], 'B', (bwd[0] - 5, bwd[1] - 5), 1, 1, (0, 255, 255), 1)
             cv2.rectangle(blend, (bwd[0], bwd[1]), (bwd[0] + bwd[2], bwd[1] + bwd[3]), (0, 255, 255), 1)
             cv2.putText(blend, 'B', (bwd[0] - 5, bwd[1] - 5), 1, 1, (0, 255, 255), 1)
 
         if preds[1 + 3*i] == 1:
-            #cv2.rectangle(imgs[1], (mid[0], mid[1]), (mid[0] + mid[2], mid[1] + mid[3]), (3, 3, 252), 1)
-            #cv2.putText(imgs[1], 'V', (mid[0] - 5, mid[1] - 5), 1, 1, (3, 3, 252), 1)
             cv2.rectangle(blend, (mid[0], mid[1]), (mid[0] + mid[2], mid[1] + mid[3]), (3, 3, 252), 1)
             cv2.putText(blend, 'V', (mid[0] - 5, mid[1] - 5), 1, 1, (3, 3, 252), 1)
         else:
-            #cv2.rectangle(imgs[1], (mid[0], mid[1]), (mid[0] + mid[2], mid[1] + mid[3]), (0, 255, 255), 1)
-            #cv2.putText(imgs[1], 'B', (mid[0] - 5, mid[1] - 5), 1, 1, (0, 255, 255), 1)
             cv2.rectangle(blend, (mid[0], mid[1]), (mid[0] + mid[2], mid[1] + mid[3]), (0, 255, 255), 1)
             cv2.putText(blend, 'B', (mid[0] - 5, mid[1] - 5), 1, 1, (0, 255, 255), 1)
 
         if preds[2 + 3*i] == 1:
-            #cv2.rectangle(imgs[2], (fwd[0], fwd[1]), (fwd[0] + fwd[2], fwd[1] + fwd[3]), (3, 3, 252), 1)
-            #cv2.putText(imgs[2], 'V', (fwd[0] - 5, fwd[1] - 5), 1, 1, (3, 3, 252), 1)
             cv2.rectangle(blend, (fwd[0], fwd[1]), (fwd[0] + fwd[2], fwd[1] + fwd[3]), (3, 3, 252), 1)
             cv2.putText(blend, 'V', (fwd[0] - 5, fwd[1] - 5), 1, 1, (3, 3, 252), 1)
         else:
-            #cv2.rectangle(imgs[2], (fwd[0], fwd[1]), (fwd[0] + fwd[2], fwd[1] + fwd[3]), (0, 255, 255), 1)
-            #cv2.putText(imgs[2], 'B', (fwd[0] - 5, fwd[1] - 5), 1, 1, (0, 255, 255), 1)
             cv2.rectangle(blend, (fwd[0], fwd[1]), (fwd[0] + fwd[2], fwd[1] + fwd[3]), (0, 255, 255), 1)
             cv2.putText(blend, 'B', (fwd[0] - 5, fwd[1] - 5), 1, 1, (0, 255, 255), 1)
 

@@ -1,28 +1,33 @@
+"""
+File name: bigmm2.py
+Author: Tunai P. Marques
+Website: tunaimarques.com | github.com/tunai
+Date created: Jul 15 2020
+Date last modified: Nov 02 2020
+
+DESCRIPTION: implements a novel bi directional GMM strategy for background subtraction.
+
+If this software proves to be useful to your work, please cite: "Tunai Porto Marques, Alexandra Branzan Albu,
+Patrick O'Hara, Norma Serra, Ben Morrow, Lauren McWhinnie, Rosaline Canessa. Robust Detection of Marine Vessels
+from Visual Time Series. In The IEEE Winter Conference on Applications of Computer Vision, 2021."
+
+"""
+
 import cv2
-import os
 import numpy as np
 from utils.utils import filterDetection, CCCalculateandFilter, templateMatching, \
     showTemplateMatchingResults, generateBlendResult
 from utils.utils_plotting import showIMG, plotAllBB, plotBB_BS_Result
-import timeit
-import time
 
-def DSMV(bwdImg, midImg, fwdImg,
-                     pixelThresh =10,
-                     pixelDeltaThresh = 120,
-                     validRange = [220,500],
+def DSMV(bwdImg, midImg, fwdImg,  # three images temporally close to each other from stationary camera
+                     pixelThresh =10,  # minimum number of pixels in a motion-triggered set of connected components
+                     pixelDeltaThresh = 120,  # Mahalanobis threshold for the GMM
+                     validRange = [220,500],  # valid range of Y-axis coordinates
                      displayAllBB = None,
                      outputBlendImg = None,
-                     upperBBlimit = 6,
+                     upperBBlimit = 6,  # maximum number of sets of BMBB-MIBB-FMBB bounding boxes groups in an image
                      debugMode = False,
-                     xLimit = 0):
-
-    # inputs:
-    # pixelThresh = 10  # pixel size threshold used in the morphological operations
-    # pixelDeltaThresh = 110  # pixel intensity change threshold (for the background subtraction process)
-    # validRange = [220,500] # range of values in the y-axis of the image to be considered
-
-    # print('Pixel Thresh Value: {}'.format(pixelThresh))
+                     xLimit = 0): # valid range of X-axis coordinates ("leftmost" to be considered)
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)) # create an ellipse morphological element
     kernelOpening = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
@@ -31,16 +36,15 @@ def DSMV(bwdImg, midImg, fwdImg,
     imageMID = files[1]
     imageMID = imageMID[validRange[0]:validRange[1], :]
 
-    numFiles = 3
+    numFiles = 3 # dev variable
 
     numCC = upperBBlimit + 1
     firstRun = True
     deltaThresh = pixelDeltaThresh # starts with user-provided (or default) pixel delta threshold
 
-    while numCC > upperBBlimit: # guarantee that the background subtraction is done until a number lower than the
+    while numCC > upperBBlimit:
+        # guarantee that the background subtraction is done until a number lower than the
         # upperBBLimit of regions is found.
-
-        # eliminate the patches with a mean intensity higher than a set threshold
 
         # print('Creating background models with pixel threshold of {}'.format(deltaThresh))
         fgbgFORWARD = cv2.createBackgroundSubtractorMOG2(history=2, varThreshold=deltaThresh, detectShadows=False)
@@ -70,17 +74,18 @@ def DSMV(bwdImg, midImg, fwdImg,
 
         if np.isscalar(ccBB_FORWARD):
             print("No fwd CC! Exiting function...")
-            return 0, 0 if (outputBlendImg is not None) else 0
+            return 0, 0 if (outputBlendImg is True) else 0
 
-        if firstRun is False: # if after the first run you are still over the limit of ccBB, check for the intensity of
-            # each ccBB to try and exclude the ones with high mean intensity (usually the sunlight's reflection)
+        if firstRun is False:
+            # if after the first run you are still over the limit of ccBB, check for the intensity of
+            # each ccBB to try and exclude the ones with high mean intensity (usually the sunlight reflection)
 
             # print('got here')
             dummy = fwdImg[validRange[0]:validRange[1], :].copy()
             resultCC = []
             for idx, bbNow in enumerate(ccBB_FORWARD):
                 patch = dummy[bbNow[1]:bbNow[1]+bbNow[3], bbNow[0]:bbNow[0]+bbNow[2], :]
-                if patch.mean()<145: # CHECK THIS LINE
+                if patch.mean()<145:
                     resultCC.append(ccBB_FORWARD[idx])
 
             ccBB_FORWARD = np.array(resultCC)
@@ -89,13 +94,13 @@ def DSMV(bwdImg, midImg, fwdImg,
         firstRun = False
 
     if np.isscalar(ccBB_FORWARD):
-        print("No fwd CC! Exiting function...")
-        return 0,0 if (outputBlendImg is not None) else 0
+        print("No forward motion-triggered sets of connected components found! Exiting bi gmm function...")
+        return 0,0 if (outputBlendImg is True) else 0
 
     ccBB_BACKWARD = CCCalculateandFilter(imageBACKWARD, fgmaskBACKWARD, pixelThresh, 0)
     if np.isscalar(ccBB_BACKWARD):
-        print("No bwd CC! Exiting function...")
-        return 0,0 if (outputBlendImg is not None) else 0
+        print("No backward motion-triggered sets of connected components found! Exiting bi gmm function...")
+        return 0,0 if (outputBlendImg is True) else 0
 
     TMresult = templateMatching(imageFORWARD, imageMID, imageBACKWARD, ccBB_FORWARD, ccBB_BACKWARD, debugMode=debugMode,
                                 xlimit=xLimit)
@@ -106,13 +111,11 @@ def DSMV(bwdImg, midImg, fwdImg,
         if sum(TMresult[i, :, 1]) == 0:
             pass
         else:
-            # print('add this one')
             temp = TMresult[i, :, :].copy()
-            temp[1,:] = temp[1,:] + validRange[0] # re-reference the coordinates to the original ones
+            temp[1,:] = temp[1,:] + validRange[0]
+            # re-reference the coordinates to the original ones
             # to do that, simply add validRange[0] to the initial y coordinates of all BBs.
             filteredTMResult.append(temp)
-
-    # print("detection time = {} seconds".format(time.time() - start_time))
 
     if displayAllBB is not None:
         ccBBBWD = []

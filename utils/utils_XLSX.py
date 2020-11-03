@@ -1,3 +1,19 @@
+"""
+File name: utils_XLSX.py
+Author: Tunai P. Marques
+Website: tunaimarques.com | github.com/tunai
+Date created: Jul 01 2020
+Date last modified: Nov 02 2020
+
+DESCRIPTION: implements functions to create and save .XLSX files of the output. Except for research purposes,
+we recommend that users do not modify this script.
+
+If this software proves to be useful to your work, please cite: "Tunai Porto Marques, Alexandra Branzan Albu,
+Patrick O'Hara, Norma Serra, Ben Morrow, Lauren McWhinnie, Rosaline Canessa. Robust Detection of Marine Vessels
+from Visual Time Series. In The IEEE Winter Conference on Applications of Computer Vision, 2021."
+
+"""
+
 import cv2
 import xlsxwriter
 from datetime import datetime

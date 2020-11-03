@@ -3,10 +3,18 @@ File name: config.py
 Author: Tunai P. Marques
 Website: tunaimarques.com | github.com/tunai
 Date created: Aug 10 2020
-Date last modified: Sept 1 2020
+Date last modified: Nov 02 2020
 
-Description: configuration file to determine the values of parameters from the main execution script,
+DESCRIPTION: configuration file to determine the values of parameters from the main execution script,
 end-to-end object detector and DSMV.
+
+INSTRUCTIONS: change the parameters of this file to modify the behaviour of the detector. See "help" fields of
+each parameter for details.
+
+If this software proves to be useful to your work, please cite: "Tunai Porto Marques, Alexandra Branzan Albu,
+Patrick O'Hara, Norma Serra, Ben Morrow, Lauren McWhinnie, Rosaline Canessa. Robust Detection of Marine Vessels
+from Visual Time Series. In The IEEE Winter Conference on Applications of Computer Vision, 2021."
+
 """
 
 import argparse
@@ -32,7 +40,7 @@ main_arg.add_argument("--root", type=str,
                            " folders in this directory will be visited sequentially.")
 
 main_arg.add_argument("--site_name", type=str,
-                      default="Test_site",
+                      default="Sooke",
                       help="name of the site where the detection take place.")
 
 main_arg.add_argument("--prefix", type=str,
@@ -100,7 +108,7 @@ detection_arg.add_argument("--DSMV_outputBlendImg", type=bool,
 
 detection_arg.add_argument("--DSMV_upperBBlimit", type=int,
                            default=18,
-                           help="maximum number of groups of three motion-trigerred sets of CC"
+                           help="maximum number of groups of three motion-triggered sets of CC"
                                 "to be considered during the DSMV detection.")
 
 detection_arg.add_argument("--DSMV_pixel_thresh", type=int,

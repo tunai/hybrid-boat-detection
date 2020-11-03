@@ -1,10 +1,25 @@
+"""
+File name: utils.py
+Author: Tunai P. Marques
+Website: tunaimarques.com | github.com/tunai
+Date created: Jul 01 2020
+Date last modified: Nov 02 2020
+
+DESCRIPTION: implements a number of generic functions to support the hybrid marine vessels detector. Except for
+research purposes, we recommend that users do not modify this script.
+
+If this software proves to be useful to your work, please cite: "Tunai Porto Marques, Alexandra Branzan Albu,
+Patrick O'Hara, Norma Serra, Ben Morrow, Lauren McWhinnie, Rosaline Canessa. Robust Detection of Marine Vessels
+from Visual Time Series. In The IEEE Winter Conference on Applications of Computer Vision, 2021."
+
+"""
+
 import cv2
 import xlsxwriter
 from datetime import datetime
 import torch
 import numpy as np
 from utils.utils_plotting import *
-
 
 def postProcessDetections(det, threshold, validRange=0):
 
@@ -103,6 +118,7 @@ def concatenateBBs(input, scores, classes = None, threshold = 0.1):
             classes.pop(0)
 
     return concatenated, concatenatedScores, concatenatedClasses
+
 
 def concatenateBB_OD_DSMV(input, scores, classes = None,
                         threshold = 0, defaultGMMScore = 0.9111):
@@ -204,6 +220,7 @@ def concatenateBB_OD_DSMV(input, scores, classes = None,
             concatenatedScores[idx] = defaultGMMScore
 
     return concatenated, concatenatedScores, concatenatedClasses
+
 
 def createStrings(bboxes, scores):
 
@@ -483,8 +500,8 @@ def templateMatching(FWDimg, MIDimg, BWDimg, ccFWD, ccBWD, debugMode = False, MS
             # calculate the location of min and max value to find the best match
             min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
 
-            # only look for bwd and mid matches if the max value > 0 (i.e., there is a valid bwd match). otherwise, all the
-            # detections should be considered invalid and it is not necessary to calculate mid matching
+            # only look for bwd and mid matches if the max value > 0 (i.e., there is a valid bwd match). otherwise,
+            # all detections should be considered invalid and it is not necessary to calculate mid matching
             if max_val > 0:
 
                 # If the method is TM_SQDIFF or TM_SQDIFF_NORMED, take minimum value in the results
@@ -500,7 +517,7 @@ def templateMatching(FWDimg, MIDimg, BWDimg, ccFWD, ccBWD, debugMode = False, MS
                 bottom_right = (top_left[0] + w, top_left[1] + h)
 
                 # update the results with the coordinates of the bwd image matches
-                # exclude from the zerosMASK the regions that were already matched. thus they cannot be match with anymore
+                # exclude from zerosMASK the regions that were already matched. thus they cannot be match with anymore
 
                 # # # # # # # # Find vessel in the middle image
 
@@ -554,7 +571,6 @@ def templateMatching(FWDimg, MIDimg, BWDimg, ccFWD, ccBWD, debugMode = False, MS
                     cv2.rectangle(temporalTunnelCopy,(allowedW_xs,0),(allowedW_xe,tunnel_h),255,1)
                     showIMG(temporalTunnelCopy, title = "DEBUG 10: temporal tunnel with valid range highlighted")
 
-
                 # calculate the location of min and max value to find the best match
                 min_valMID, max_valMID, min_locMID, max_locMID = cv2.minMaxLoc(resMID)
 
@@ -571,7 +587,7 @@ def templateMatching(FWDimg, MIDimg, BWDimg, ccFWD, ccBWD, debugMode = False, MS
                     if debugMode:
                         print('Outside temporal range of the TT!')
                     pass
-                else:# valid MID match!
+                else:  # valid MID match!
                     if debugMode:
                         print('Inside temporal range of the TT! Continue to the MSE analysis.')
 
@@ -751,9 +767,6 @@ def generateBlendResult(FWDimg, MIDimg, BWDimg, results, specific=0, filter=1):
 
                 counter += 1
 
-
-    # add the three images together
-
     return blend
 
 def ioUtwoBBs(boxA, boxB):
@@ -775,7 +788,7 @@ def ioUtwoBBs(boxA, boxB):
     boxBArea = (boxB[2] - boxB[0] + 1) * (boxB[3] - boxB[1] + 1)
     # compute the intersection over union by taking the intersection
     # area and dividing it by the sum of prediction + ground-truth
-    # areas - the interesection area
+    # areas - the intersection area
     iou = interArea / float(boxAArea + boxBArea - interArea)
     # return the intersection over union value
     return iou
@@ -783,19 +796,19 @@ def ioUtwoBBs(boxA, boxB):
 def classifyMultiplePatchesGMM(imgs, model, boatsThreshold = 2):
     # classify multiple images at a time based on a model
     # the input must be a NORMALIZED N C H W tensor
+
     if not (imgs.type() == 'torch.FloatTensor'):
         print('Incorrect data type. It must be a N C H W tensor of torch.FloatTensor type')
         exit(1)
 
-    model.eval() # because only inference is going to be done
+    model.eval()  # because only inference is going to be done here
     with torch.no_grad():
         data = imgs.cuda()
         outputs = model(data)
         _, preds = torch.max(outputs, 1)
         pred = preds.data.cpu().numpy()
 
-
-    for i in range(0,int(len(pred)/3)): # loop through each group of 3 BBs
+    for i in range(0,int(len(pred)/3)):  # loop through each group of 3 BBs
         sum = pred[i*3]+pred[i*3+1]+pred[i*3+2]
         if sum < boatsThreshold: # if the number of boats identified in the group is less than the threshold, ignore it
             pred[i * 3] = pred[i*3+1] = pred[i*3+2] = 0
@@ -804,7 +817,7 @@ def classifyMultiplePatchesGMM(imgs, model, boatsThreshold = 2):
 
 def mergeODandDSMV(objDet, scoresDet, biGMM):
 
-    nBBbiGMM = len(biGMM) # number of BBs. Note that some can be zero (when the BBs were classified as background)
+    nBBbiGMM = len(biGMM) # number of BBs. Note that some can be zero (when the BBs are classified as background)
 
     for i in range(0,nBBbiGMM): # for each BB in the biGMM
 
@@ -826,7 +839,6 @@ def concatObjDetAndBiGMM(blendedResult, blendedScore):
 
     for i in range(0,3):
 
-        # print('now {} and {}'.format(blendedResult[i], blendedScore[i]))
         cBBs, cScores, cClasses = concatenateBBs(blendedResult[i], blendedScore[i])
         concatBBs.append(cBBs)
         concatScores.append(cScores)
@@ -854,7 +866,6 @@ def filterDSMVresults(groups_of_three, result, blend, outDirectory, images, tran
             patch = images[j][BB[1]:BB[1] + BB[3], BB[0]:BB[0] + BB[2]]  # grab a patch on the image
             patch = cv2.resize(patch, (224, 224))  # resize it to 224,224
             patchesList.append(transform(patch))  # append it to a list
-            # showIMG(patch)
             cv2.imwrite(outDirectory + gt["uniqueIDMinute"] + "_" + str(bbox + 1) + "_" + str(j) + ".jpg", patch)
             # create an image of the patch and save it
 
@@ -865,8 +876,8 @@ def filterDSMVresults(groups_of_three, result, blend, outDirectory, images, tran
 
         tensor = torch.stack(patchesList)  # turn the list of patches into a N C H W torch tensor
 
-        # classify the patches using the image classifying model. they are already normalized tensors
         preds = classifyMultiplePatchesGMM(tensor, model, boatsThreshold=thresh)
+        # classify the patches using the image classifying model. they are already normalized tensors
 
         # TEST ARRAY. COMMENT IT WHEN RUNNING THE PROGRAM. DEBUG ONLY.
         # preds = [1,0,0,1,0,1,0,1,0]
@@ -878,18 +889,18 @@ def filterDSMVresults(groups_of_three, result, blend, outDirectory, images, tran
             currentGroupBB = result[i]
             currentGroupPred = preds[i*3:(i*3)+3]
 
-            if sum(currentGroupPred) > 0: # if this list of 3 BBs contains any valid detection,
+            if sum(currentGroupPred) > 0:  # if this list of 3 BBs contains any valid detection,
                 newValue = []
-                for predIdx in range(0,3): # move through each detection idx (0,1,2)
+                for predIdx in range(0,3):  # move through each detection idx (0,1,2)
 
-                    if currentGroupPred[predIdx]: # if the current detection is a vessel (1) ano not bkgd (0),
+                    if currentGroupPred[predIdx]:  # if the current detection is a vessel (1) ano not bkgd (0),
                         valueToAdd = np.append(currentGroupBB[:,predIdx], predIdx) # add 0,1 or 2 to the end of the
                         # value so that we know later on if this is a fwd, bwd or mid bb
                         newValue.append(valueToAdd)
-                        array = np.vstack(newValue) # combine all list elements into an array
-                        onlyVessels[i] = np.transpose(array) # transpose so that each column represents a valid biGMM BB
+                        array = np.vstack(newValue)  # combine all list elements into an array
+                        onlyVessels[i] = np.transpose(array)  # transpose so each column represents a valid biGMM BB
 
-            else: # if you have a (0 0 0) prediction, ignore this group of bounding boxes
+            else: # if you have a (0 0 0) prediction, ignore this group of bounding boxes - all classified as background
                 onlyVessels[i] = 0
 
         name = outDirectory + gt["uniqueIDMinute"] + "_GMMClassOUT.jpg"
@@ -916,7 +927,6 @@ def createGroupsofThree(files,inDirectory,prefix):
 
             # check if this minute group is already in the list
             index = next((index for index, item in enumerate(groups_of_three) if item["uniqueIDMinute"] == uniqueIDMinute), "No")
-            # print('looking for {} found? {}'.format(uniqueIDMinute, index))
 
             if index == "No":
                 groups_of_three.append({"uniqueIDMinute": uniqueIDMinute})
@@ -927,14 +937,11 @@ def createGroupsofThree(files,inDirectory,prefix):
 
     return  groups_of_three
 
-
 def mse(imageA, imageB):
-    # the 'Mean Squared Error' between the two images is the
-    # sum of the squared difference between the two images;
-    # NOTE: the two images must have the same dimension
-    err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
-    err /= float(imageA.shape[0] * imageA.shape[1])
+    # Mean Squared Error between two images is the
+    # sum of the squared difference between them
 
-    # return the MSE, the lower the error, the more "similar"
-    # the two images are
-    return err
+    mse = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
+    mse /= float(imageA.shape[0] * imageA.shape[1])
+
+    return mse

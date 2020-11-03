@@ -1,3 +1,26 @@
+"""
+File name: main_github.py
+Author: Tunai P. Marques
+Website: tunaimarques.com | github.com/tunai
+Date created: Jul 15 2020
+Date last modified: Nov 02 2020
+
+DESCRIPTION: main script. reads all ".jpg" and ".png" files from sub-folders of the main folder (config.root) and
+performs the hybrid marine vessel detection using the novel strategy proposed.
+
+INSTRUCTIONS:
+0) Change the values on the "config.py" file to reflect your configuration preferences.
+1) The file names must follow the "prefix+YYYY-MM-DD_HH-MM-SS.format" template, and groups of three images
+ temporally close to each other (we used 5 seconds, but you can try other time intervals) must be provided.
+2) The folder(s) being processed must only contains image files and possibly "output sub folders" created by
+this script. Any other sub folders will create unpredictable output.
+
+If this software proves to be useful to your work, please cite: "Tunai Porto Marques, Alexandra Branzan Albu,
+Patrick O'Hara, Norma Serra, Ben Morrow, Lauren McWhinnie, Rosaline Canessa. Robust Detection of Marine Vessels
+from Visual Time Series. In The IEEE Winter Conference on Applications of Computer Vision, 2021."
+
+"""
+
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from torchvision import transforms
@@ -7,6 +30,8 @@ from utils.utils_XLSX import createXLSX, updateXLSX
 from utils.utils_plotting import readAndPlotOD, readAndPlotMerged, showIMG, throwModelError
 from utils.bigmm2 import DSMV
 from config import init_config
+from datetime import datetime
+
 import numpy as np
 import shutil, sys, copy, os, time
 import cv2
@@ -14,20 +39,19 @@ import torch
 
 if __name__ == '__main__':
 
-    """
-    # uncomment to visualise a sample image and determine the detection bands (i.e., x- and y-limits for OD and DSMV)
-    # change the upper_ylimit, DSMV_ylimit, OD_ylimit and xlimit parameters on the config to adjust to new boundaries. 
-    img = cv2.imread('./data/2/sample_scene_2019-08-03_13-18-09.jpg')
-    showIMG(img)
-    """
+    # # uncomment to visualise a sample image and determine the detection bands (i.e., x- and y-limits for OD and DSMV)
+    # # change the upper_ylimit, DSMV_ylimit, OD_ylimit and xlimit parameters on the config to adjust to new boundaries.
+    # img = cv2.imread('./data/3/capture_2020-07-30_10-01-20(RCNX8249.JPG).jpg')
+    # showIMG(img)
 
     config = init_config()  # load all parameters from the config.py file
 
     start_time_global_global = time.time()
-    print('Starting the boat detection on files from multiple folders...')
+    print('Processing multiple folders with the Hybrid Marine Vessel detection system.')
 
     names = [x[0] for x in os.walk(config.root)]
     subfolderNames = names[1:]
+    subfolderNames = [x for x in subfolderNames if not "output" in x]  # ignores all output sub folders from folders
 
     validRangeGMMValue = [config.upper_ylimit,
                           config.DSMV_ylimit]  # range inside which the DSMV will perform detection.
@@ -70,16 +94,11 @@ if __name__ == '__main__':
 
     for foldInd in range(0, len(subfolderNames)):
         inDirectory = subfolderNames[foldInd] + '/'
-        outDirectory = inDirectory + "DSMV/"
-
-        if os.path.exists(inDirectory + "positiveHybrid/"):
-            sys.exit('There exists one or more output subfolders in "{}". Please remove them to prevent data from'
-                     ' being overwritten.'.format(inDirectory))
+        now = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
+        outDirectory = inDirectory + "/output " + now + "/DSMV/"
+        os.makedirs(outDirectory)
 
         print('\n{}. Processing folder "{}".'.format(foldInd + 1, inDirectory))
-
-        if not os.path.exists(outDirectory):
-            os.makedirs(outDirectory)
 
         allfiles = sorted(os.listdir(inDirectory))
         files = []
@@ -91,6 +110,7 @@ if __name__ == '__main__':
         # the DSMV works on groups of three images at a time. each minute offers 3 images,
         # and they must be grouped following the naming convention:"prefix+YYYY-MM-DD_HH-MM-SS"
         groups_of_three = createGroupsofThree(files, inDirectory, config.prefix)
+        print('Number of groups of three images identified in this folder: {}'.format(groups_of_three.__len__()))
 
         # create an .XLSX spreadsheet to save the results of both hybrid (combined) and OD results
         workbook, worksheet = createXLSX(config.site_name, name="HYBRID")
@@ -129,7 +149,7 @@ if __name__ == '__main__':
                     id = "image" + str(phase + 1)  # phase ID
                     name = i[id][len(i[id]) - (len(config.prefix) + 23):]  # 23 = exact len of "YYYY-MM-DD_HH-MM-SS.jpg"
                     readAndPlotOD(filt_bboxes[phase], filt_scores[phase], filt_class[phase], images[phase].copy(), name,
-                                  inDirectory, outNameN="/negativeOD/", outNameP="/positiveOD/")
+                                  inDirectory, outNameN="/output " + now + "/negativeOD/", outNameP="/output " + now + "/positiveOD/")
 
                 # executes the DSMV to detect small marine vessels in groups of three temporally close images
                 result, blend = DSMV(images[0], images[1], images[2],
@@ -191,7 +211,7 @@ if __name__ == '__main__':
 
                     # create the resulting image
                     readAndPlotMerged(mergedBBs[phase], mergedScores[phase], classes, images[phase], name,
-                                      inDirectory, outNameN="/negativeHybrid/", outNameP="/positiveHybrid/")
+                                      inDirectory, outNameN="/output " + now + "/negativeHybrid/", outNameP="/output " + now + "/positiveHybrid/")
 
                     torch.cuda.empty_cache()  # empty CUDA memory so that it does not run out of memory
 
@@ -199,8 +219,8 @@ if __name__ == '__main__':
         # once all groups of three are done, close, save and move the spreadsheet
         workbook.close()
         workbookOD.close()
-        shutil.move(workbook.filename, inDirectory)
-        shutil.move(workbookOD.filename, inDirectory)
+        shutil.move(workbook.filename, inDirectory + "/output " + now + "/")
+        shutil.move(workbookOD.filename, inDirectory + "/output " + now + "/")
 
         if (numBoats is not 0) and (total_time > 0):
             print("Folder processing time = {} s. Time"
