@@ -35,6 +35,9 @@ conda install -c anaconda xlsxwriter
 ```python
 python main.py
 ```       
+Your output should look like this: 
+<img height="238px" width="611px" align="left" src="https://i.imgur.com/IadQOxX.jpg">  
+
 
 
 
