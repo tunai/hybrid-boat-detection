@@ -81,9 +81,9 @@ python
 import detectron2
 detectron2.__version__
 ```
-Success output message: "0.1"
+Success output message: "0.1".
 
-For reference, this is how my "requirements.txt" file looked at this point: 
+You're done, congrats! For reference, this is how my "requirements.txt" file looked at this point: 
 ```
 absl-py==0.11.0
 cachetools==4.1.1
