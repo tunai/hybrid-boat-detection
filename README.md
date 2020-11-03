@@ -57,7 +57,7 @@ The output folders also contain two *.xlsx* spreadsheets ([example](https://i.im
 
 **Preliminary considerations**: this detector was developed to use small time series of three monitoring images captured 5 seconds apart from each other using a static camera. You can try different capture layouts, but please keep in mind the system's original intent and assumptions when using it. 
 
-Place your images in subfolders inside of *"./data/"*. Each scene should be represented by a group of three images named using the following convention "prefix+YYYY-MM-DD_HH-MM-SS.format", where *prefix* is the name of the site, and *format* is either *".jpg"* or *".png"*. For example: consider a sulbfolder containing nine images (three groups of three images) for a test site called "site1": 
+Place your images in subfolders inside of *"./data/"* (as in the samples provided). Each scene should be represented by a group of three images named using the following convention "prefix+YYYY-MM-DD_HH-MM-SS.format", where *prefix* is the name of the site, and *format* is either *".jpg"* or *".png"*. For example: consider a sulbfolder containing nine images (three groups of three images) for a test site called "site1": 
 ```
 site1_2018-08-21_20-37-12.jpg
 site1_2018-08-21_20-37-17.jpg
