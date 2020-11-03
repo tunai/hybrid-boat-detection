@@ -1,4 +1,4 @@
-This folders contains 2 annotated datasets of marine vessels captured University of Victoria's Coastal and Ocean Resource Analysis Laboratory [CORAL](www.coral.geog.uvic.ca) using a static camera focused off-shore to the south and west of southern Vancouver Island, BC, Canada, during the years of 2019 and 2020. 
+This folder contains 2 annotated datasets of marine vessels captured University of Victoria's Coastal and Ocean Resource Analysis Laboratory [CORAL](www.coral.geog.uvic.ca) using a static camera focused off-shore to the south and west of southern Vancouver Island, BC, Canada, during the years of 2019 and 2020. 
 
 A pan-tilt-zoom (PTZ) camera was installed at two fixed positions on a headland overlooking a major vessel traffic thoroughfare and configured to continuously capture three 1920 x1080 pixels photos in the first 15 seconds of each minute. 
 
@@ -11,6 +11,6 @@ While creating both D1 and D2 we selected images under different weather conditi
 **Note**: the annotations were created using MATLAB's *imagelabeler*. Make sure that you change their source path (i.e., gTruth.DataSource.Source) when using these datasets. 
 
 <p align="center">
-  <img src="https://i.imgur.com/fwiNzRm.jpg">
+  <img src="https://i.imgur.com/fwiNzRm.jpg" width="48">
 </p>
 
