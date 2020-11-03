@@ -13,6 +13,7 @@ conda create environment --n myenv python=3.7
 conda activate myenv
 conda install pip
 ```
+Note: make sure you create an environment with Python 3.7. The installation does not work with Python>3.7.
 
 2. Install pytorch 1.3.1 and torchivsion 1.2.3:
 ```
