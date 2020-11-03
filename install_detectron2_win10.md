@@ -80,6 +80,7 @@ python
 import detectron2
 detectron2.__version__
 ```
+Success output: "0.1"
 
 
 
