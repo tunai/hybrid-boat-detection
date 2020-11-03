@@ -16,7 +16,7 @@ If the software provided proves to be useful to your work, please cite its relat
 
 ### Installation and requirements
 
-1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow the repo's intructions to install Detectron2, PyTorch, torchvision, OpenCV, fvcore and pycocotools. Although not tested, it should work with the original Linux version. Once you are done, check the Dectron2 installation on your Python environment: 
+1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow the repo's intructions to install Detectron2, [PyTorch](https://pytorch.org/get-started/locally/), torchvision, [OpenCV](https://anaconda.org/conda-forge/opencv), [fvcore](https://github.com/facebookresearch/fvcore) and pycocotools. Although not tested, it should work with the original Linux version. Once you are done, check the Dectron2 installation on your Python environment: 
         
 ```python
 import detectron2
