@@ -1,6 +1,6 @@
 ## Pre-requisites: 
 * Visual Studio 2019 
-* CUDA > 10.1 (once done, run ```nvcc --version``` to check version and installation)
+* CUDA > 10.1 (once done, run ```nvcc --version``` on cmd to check version and installation)
 * Anaconda (not mandatory, but the rest of this tutorial uses it)
 
 ### Steps: 
