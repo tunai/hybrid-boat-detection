@@ -68,7 +68,7 @@ explicit operator type&() { return *((type*)this->value); }
 ```
 Note: the path for VS2019 *Enterprise* is going to be different.
 
-9. Download and install Detectron2:
+9. Download and install [conansherry's Detectron2](github.com/conansherry/detectron2):
 ```
 git clone https://github.com/conansherry/detectron2
 cd detectron2
@@ -81,7 +81,7 @@ python
 import detectron2
 detectron2.__version__
 ```
-Success output: "0.1"
+Success output message: "0.1"
 
 
 
