@@ -19,14 +19,16 @@ If the software provided proves to be useful to your work, please cite its relat
 1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow the repo's intructions to install it. Although not tested, it should work with the original Linux version. Once you are done, run on your Python environment: 
         
 ```python
-import detectron22
+import detectron2
 detectron2.__version__
 ```
+You should be able to see the version of your Detectron2. 
 
 2.
-        git clone https://github.com/tunai/hybrid-boat-detection
-        cd hybrid-boat-detection
-        conda install pip
+```git clone https://github.com/tunai/hybrid-boat-detection
+cd hybrid-boat-detection
+conda install pip
+```
         
 
 
