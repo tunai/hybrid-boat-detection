@@ -6,8 +6,8 @@
 ### Steps: 
 
 1. Run anaconda prompt, create an environment, activate it and install pip: 
-```python
-	conda create environment --name myenv
-  conda activate myenv
-  conda install pip
+```
+conda create environment --name myenv
+conda activate myenv
+conda install pip
 ```
