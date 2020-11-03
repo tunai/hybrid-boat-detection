@@ -14,15 +14,15 @@ If the software provided proves to be useful to your work, please cite its relat
 >      booktitle={Proceedings of the IEEE Winter Conference on Applications of Computer Vision},      
 >      year={2021}}
 
-### Installation
+### Installation and requirements
 
-1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow the repo's intructions to install it. Although not tested, it should work with the original Linux version. Once you are done, run on your Python environment: 
+1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow the repo's intructions to install Detectron2, PyTorch, torchvision, OpenCV, fvcore and pycocotools. Although not tested, it should work with the original Linux version. Once you are done, check the Dectron2 installation on your Python environment: 
         
 ```python
 import detectron2
 detectron2.__version__
 ```
-You should be able to see the version of your Detectron2. 
+You should be able to see the version of your Detectron2 if the installation was sucessful. 
 
 2. Install the repo and its requirements
 ```git clone https://github.com/tunai/hybrid-boat-detection
