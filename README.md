@@ -45,7 +45,7 @@ To run the detector with sample data, simply call ```python main.py```. The dete
 
 <img height="102px" width="1023px" align="center" src="https://i.imgur.com/CThe9IW.jpg.jpg">  
 
-The highlighted images showing the final output of detected boats are located in *"./positiveHybrid/"*. The output folders also contain two *.xlsx* spreadsheets that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates (note: **OD** indicates detection using pre-trained DL-based object detectors only, while **Hybrid** indicates the final, hybrid results). 
+The highlighted images showing the final output of detected boats are located in *"./positiveHybrid/"*. The output folders also contain two *.xlsx* spreadsheets ([example](https://i.imgur.com/MXT3PQc.jpg)) that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates (note: **OD** indicates detection using pre-trained DL-based object detectors only, while **Hybrid** indicates the final, hybrid results). 
 
 #### Using your own data
 
