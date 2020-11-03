@@ -49,13 +49,13 @@ The highlighted images showing the final output of detected boats are located in
 
 <img align="center" src="https://i.imgur.com/JvbjDZz.jpg">  
 
-Red bounding boxes indicate boats identified using small time series and a novel bi GMM system in the Detector of Small Marine Vessels (DSMV). Mid- and Large-sized boats are tipically recognized with the use of pre-trained end-to-end object detectors (yellow bounding boxes). The Hybrid system combined both outputs, resulting in a system capable of identifying boats ranging from pixel-level to very large.  
+Red bounding boxes indicate boats identified using small time series and a novel bi GMM system in the Detector of Small Marine Vessels (DSMV). Mid- and large-sized boats are tipically recognized with the use of pre-trained end-to-end object detectors (yellow bounding boxes). The Hybrid system combined both outputs, resulting in a system capable of identifying boats ranging from pixel-level to very large.  
 
 The output folders also contain two *.xlsx* spreadsheets ([example](https://i.imgur.com/MXT3PQc.jpg)) that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates (note: **OD** indicates detection using pre-trained DL-based object detectors only, while **Hybrid** indicates the final, hybrid results). 
 
 #### Using your own data
 
-**Preliminary considerations**: this detector was developed to use small time series of three monitoring images captured 5 seconds apart from each other using a static camera. You can try different capture layouts, but please keep in mind the system's original intent and considerations when using it. 
+**Preliminary considerations**: this detector was developed to use small time series of three monitoring images captured 5 seconds apart from each other using a static camera. You can try different capture layouts, but please keep in mind the system's original intent and assumptions when using it. 
 
 Place your images in subfolders inside of *"./data/"*. Each scene should be represented by a group of three images named using the following convention "prefix+YYYY-MM-DD_HH-MM-SS.format", where *prefix* is the name of the site, and *format* is either *".jpg"* or *".png"*. For example: consider a sulbfolder containing nine images (three groups of three images) for a test site called "site1": 
 ```
