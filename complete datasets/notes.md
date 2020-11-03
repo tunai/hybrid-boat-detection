@@ -10,5 +10,7 @@ While creating both D1 and D2 we selected images under different weather conditi
 
 **Note**: the annotations were created using MATLAB's *imagelabeler*. Make sure that you change their source path (i.e., gTruth.DataSource.Source) when using these datasets. 
 
-<img align="center" src="https://i.imgur.com/fwiNzRm.jpg">  
+<p align="center">
+  <img src="https://i.imgur.com/fwiNzRm.jpg">
+</p>
 
