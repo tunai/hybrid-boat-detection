@@ -41,7 +41,9 @@ Your output should look like [this](https://i.imgur.com/IadQOxX.jpg)
 
 #### Generic
 
-To run the detector with sample data, simply call ```python main.py```. The detector reads all .jpg and .png images on the subfolders inside of *./data/*. 
+To run the detector with sample data, simply call ```python main.py```. The detector reads all .jpg and .png images on the subfolders inside of *./data/*. Each run will generate the following output on each subfolder: 
+
+<img height="102px" width="1023px" align="center" src="https://i.imgur.com/CThe9IW.jpg.jpg">  
 
 ### Repo author
 
