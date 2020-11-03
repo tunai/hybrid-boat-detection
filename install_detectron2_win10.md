@@ -83,5 +83,61 @@ detectron2.__version__
 ```
 Success output message: "0.1"
 
+For reference, this is how my "requirements.txt" file looked at this point: 
+```
+absl-py==0.11.0
+cachetools==4.1.1
+certifi==2020.6.20
+cffi @ file:///C:/ci/cffi_1600699250966/work
+chardet==3.0.4
+cloudpickle==1.6.0
+cycler==0.10.0
+Cython @ file:///C:/ci/cython_1594834055134/work
+-e git+https://github.com/conansherry/detectron2@72c935d9aad8935406b1038af408aa06077d950a#egg=detectron2
+fvcore @ git+https://github.com/facebookresearch/fvcore@f6909f52280135588627d017a2191ce2e6605742
+google-auth==1.23.0
+google-auth-oauthlib==0.4.2
+grpcio==1.33.2
+idna==2.10
+imagesize==1.2.0
+importlib-metadata==2.0.0
+kiwisolver==1.3.1
+markdown==3.3.3
+matplotlib==3.3.2
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+numpy @ file:///C:/ci/numpy_and_numpy_base_1603468620949/work
+oauthlib==3.1.0
+olefile==0.46
+Pillow @ file:///C:/ci/pillow_1603821929285/work
+portalocker==2.0.0
+protobuf==4.0.0rc2
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycocotools @ git+https://github.com/philferriere/cocoapi.git@2929bd2ef6b451054755dfd7ceb09278f935f7ad#subdirectory=PythonAPI
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pyparsing==3.0.0b1
+python-dateutil==2.8.1
+pywin32==228
+PyYAML==5.3.1
+requests==2.24.0
+requests-oauthlib==1.3.0
+rsa==4.6
+six==1.15.0
+tabulate==0.8.7
+tensorboard==2.3.0
+tensorboard-plugin-wit==1.7.0
+termcolor==1.1.0
+torch==1.3.1
+torchvision==0.4.2
+tqdm==4.51.0
+urllib3==1.25.11
+werkzeug==1.0.1
+wincertstore==0.2
+yacs==0.1.8
+zipp==3.4.0
+```
+
 
 
