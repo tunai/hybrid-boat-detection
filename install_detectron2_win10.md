@@ -66,7 +66,7 @@ explicit operator type&() { return *((type*)this->value); }
 ```
 "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat" 
 ```
-Note: in VS2019 ENTERPRISE the path is going to be different)
+Note: the path for VS2019 *Enterprise* is going to be different.
 
 9. Download and install Detectron2:
 ```
