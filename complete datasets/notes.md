@@ -1,4 +1,4 @@
-This folder contains 2 annotated datasets of marine vessels captured University of Victoria's Coastal and Ocean Resource Analysis Laboratory [CORAL](www.coral.geog.uvic.ca) using a static camera focused off-shore to the south and west of southern Vancouver Island, BC, Canada, during the years of 2019 and 2020. 
+This folder contains 2 annotated datasets of marine vessels captured by University of Victoria's Coastal and Ocean Resource Analysis Laboratory [CORAL](www.coral.geog.uvic.ca) using a static camera focused off-shore to the south and west of southern Vancouver Island, BC, Canada, during the years of 2019 and 2020. 
 
 A pan-tilt-zoom (PTZ) camera was installed at two fixed positions on a headland overlooking a major vessel traffic thoroughfare and configured to continuously capture three 1920 x1080 pixels photos in the first 15 seconds of each minute. 
 
