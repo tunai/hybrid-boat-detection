@@ -43,11 +43,11 @@ Your output should look like [this](https://i.imgur.com/IadQOxX.jpg)
 
 To run the detector with sample data, simply call ```python main.py```. The detector reads all *.jpg* and *.png* images on the subfolders inside of *"./data/"*. Each run will generate the following output on each subfolder: 
 
-<img height="102px" width="1023px" align="center" src="https://i.imgur.com/CThe9IW.jpg.jpg">  
+<img align="center" src="https://i.imgur.com/CThe9IW.jpg">  
 
 The highlighted images showing the final output of detected boats are located in *"./positiveHybrid/"*. Here's an example: 
 
-<img align="center" src="https://i.imgur.com/CThe9IW.jpg.jpg">  
+<img align="center" src="https://i.imgur.com/JvbjDZz.jpg">  
 
 The output folders also contain two *.xlsx* spreadsheets ([example](https://i.imgur.com/MXT3PQc.jpg)) that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates (note: **OD** indicates detection using pre-trained DL-based object detectors only, while **Hybrid** indicates the final, hybrid results). 
 
