@@ -24,7 +24,7 @@ detectron2.__version__
 ```
 You should be able to see the version of your Detectron2. 
 
-2.
+2. Install the repo and its requirements
 ```git clone https://github.com/tunai/hybrid-boat-detection
 cd hybrid-boat-detection
 conda install pip
