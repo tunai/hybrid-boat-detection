@@ -1,11 +1,11 @@
 This guide reflects the installation steps of Detectron2 on Windows 10 for my particular hardware. Note that for different GPUs, operational systems, etc. the layout/steps could be slightly different.
 
 ## Pre-requisites: 
-* Visual Studio 2019 with C++ Build Tools. This tutorial uses the *Community* version. 
+* [Visual Studio 2019](https://visualstudio.microsoft.com/vs/) with C++ Build Tools. This tutorial uses the *Community* version. 
 * CUDA > 10.1 (once installed, run ```nvcc --version``` on windows cmd to check version and installation completion)
-* Anaconda (not mandatory, but the rest of this tutorial uses it)
+* [Anaconda](https://www.anaconda.com/products/individual)
 
-### Steps: 
+## Steps: 
 
 1. Run anaconda prompt, create an environment, activate it and install pip: 
 ```
