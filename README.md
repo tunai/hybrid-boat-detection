@@ -16,7 +16,7 @@ If the software provided proves to be useful to your work, please cite its relat
 
 ### Installation and requirements
 
-1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow that repo's intructions on how to install Detectron2, [PyTorch](https://pytorch.org/get-started/locally/), torchvision, [OpenCV](https://anaconda.org/conda-forge/opencv), [fvcore](https://github.com/facebookresearch/fvcore), [pycocotools](https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI) and cython. I have also put together a tutorial on how to install Detectron2 on Windows, which you can follow (both guides should work).  
+1. **Detectron2**. The detector was built using [conansherry's Windows build of Detectron2](https://github.com/conansherry/detectron2). Follow that repo's intructions on how to install Detectron2, [PyTorch](https://pytorch.org/get-started/locally/), torchvision, [OpenCV](https://anaconda.org/conda-forge/opencv), [fvcore](https://github.com/facebookresearch/fvcore), [pycocotools](https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI) and cython. I have also put together a [tutorial on how to install Detectron2 on Windows](https://github.com/tunai/hybrid-boat-detection/blob/master/install_detectron2_win10.md) with specific package versions which you can follow (both guides should work).  
 Although not yet tested, the boat detector should work with the original Linux release of Detectron2. Once you are done, check the installation on your Python environment: 
         
 ```python
