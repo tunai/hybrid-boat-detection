@@ -26,17 +26,17 @@ Note: installing newer versions of pytorch/torchvision (e.g., torchvision>0.5) w
 conda install -c conda-forge opencv
 ```
 
-4. install fvcore
+4. Install fvcore
 ```
 pip install git+https://github.com/facebookresearch/fvcore
 ```
 Success message: Successfully installed fvcore-0.1.2 portalocker-2.0.0 pywin32-228 pyyaml-5.3.1 tabulate-0.8.7 termcolor-1.1.0 tqdm-4.51.0 yacs-0.1.8
 
-5. install cython
+5. Install cython
 ```
 conda install -c anaconda cython
 ```
-6. install picocotools:
+6. Install picocotools:
 ```
 pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
 ```
