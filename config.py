@@ -40,7 +40,7 @@ main_arg.add_argument("--root", type=str,
                            " folders in this directory will be visited sequentially.")
 
 main_arg.add_argument("--site_name", type=str,
-                      default="Sooke",
+                      default="Test Site",
                       help="name of the site where the detection take place.")
 
 main_arg.add_argument("--prefix", type=str,
