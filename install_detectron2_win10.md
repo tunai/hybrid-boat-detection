@@ -30,7 +30,7 @@ conda install -c conda-forge opencv
 ```
 pip install git+https://github.com/facebookresearch/fvcore
 ```
-Success message: Successfully installed fvcore-0.1.2 portalocker-2.0.0 pywin32-228 pyyaml-5.3.1 tabulate-0.8.7 termcolor-1.1.0 tqdm-4.51.0 yacs-0.1.8
+Success message: "Successfully installed fvcore-0.1.2 portalocker-2.0.0 pywin32-228 pyyaml-5.3.1 tabulate-0.8.7 termcolor-1.1.0 tqdm-4.51.0 yacs-0.1.8"
 
 5. Install cython
 ```
@@ -40,7 +40,7 @@ conda install -c anaconda cython
 ```
 pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
 ```
-Success message: Successfully installed pycocotools-2.0
+Success message: "Successfully installed pycocotools-2.0"
 
 7. Change the content of two files manually:
 
@@ -51,7 +51,7 @@ static constexpr size_t DEPTH_LIMIT = 128;
       change to -->
 static const size_t DEPTH_LIMIT = 128;
 ```
-Note: for different version of pytorch, simply search for "DEPTH_LIMIT" and change "constexpr" for "const".
+Note: for different versions of pytorch, simply search for "DEPTH_LIMIT" and change "constexpr" for "const".
 
 File 2: 
   {anaconda3 path}\pkgs\pytorch-1.3.1-py3.7_cuda101_cudnn7_0\Lib\site-packages\torch\include\pybind11\cast.h
