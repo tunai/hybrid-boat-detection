@@ -37,6 +37,12 @@ python main.py
 ```       
 Your output should look like [this](https://i.imgur.com/IadQOxX.jpg) 
 
+### Usage
+
+#### Generic
+
+To run the detector with sample data, simply call ```python main.py```. The detector reads all .jpg and .png images on the subfolders inside of *./data/*. 
+
 ### Repo author
 
 Tunai Porto Marques (tunaip@uvic.ca), [website](https://www.tunaimarques.com) 
