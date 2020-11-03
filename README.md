@@ -69,7 +69,7 @@ site1_2018-08-21_23-25-13.jpg
 site1_2018-08-21_23-25-18.jpg
 site1_2018-08-21_23-25-23.jpg
 ```
-**Note**: you images need to be inside of **subfolders** of *"./data/"*. 
+**Note**: your images need to be placed in **subfolders** from *"./data/"*. 
 
 Once your images are placed in *"./data/"*, run ```python main.py``` and subfolders will be created with the outputs described above. If performing research, change the parameters of *config.py* to test different backbones, hyper-parameters, etc.  
 
