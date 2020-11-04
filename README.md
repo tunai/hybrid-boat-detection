@@ -25,7 +25,7 @@ detectron2.__version__
 ```
 You should be able to see the version of your Detectron2 (e.g., "0.1") if the installation was sucessful. 
 
-2. Clone and install this repo and its supporting packages (with your Detectron2 python environment activated on anaconda prompt):
+2. Clone and install this repo and its supporting packages (with your Detectron2 python environment activated on Anaconda prompt):
 ```
 git clone https://github.com/tunai/hybrid-boat-detection
 cd hybrid-boat-detection
@@ -35,7 +35,7 @@ conda install -c anaconda xlsxwriter
 ```python
 python main.py
 ```       
-Your output should look like [this](https://i.imgur.com/IadQOxX.jpg) 
+Your output should look like [this](https://i.imgur.com/IadQOxX.jpg).
 
 ### Usage
 
