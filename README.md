@@ -58,7 +58,7 @@ Note: **OD** indicates detection using pre-trained DL-based object detectors onl
 
 **Preliminary considerations**: this detector was developed to use small time series of three monitoring images captured 5 seconds apart from each other using a static camera. You can try different capture layouts, but please keep in mind the system's original intent and assumptions when using it. 
 
-Place your images in subfolders inside of *"./data/"* (as in the samples provided). Each scene should be represented by a group of three images named using the following convention "prefix+YYYY-MM-DD_HH-MM-SS.format", where *prefix* is the name of the site, and *format* is either *".jpg"* or *".png"*. For example: consider a subfolder containing nine images (i.e., three groups of three images) for a test site called "site1": 
+1. **Data placement and naming convention**: place your images in subfolders inside of *"./data/"* (as in the samples provided). Each scene should be represented by a group of three images named using the following convention "prefix+YYYY-MM-DD_HH-MM-SS.format", where *prefix* is the name of the site, and *format* is either *".jpg"* or *".png"*. For example: consider a subfolder containing nine images (i.e., three groups of three images) for a test site called "site1": 
 ```
 site1_2018-08-21_20-37-12.jpg
 site1_2018-08-21_20-37-17.jpg
@@ -72,7 +72,15 @@ site1_2018-08-21_23-25-23.jpg
 ```
 **Note**: your images need to be placed in **subfolders** from *"./data/"*. 
 
-Once your images are placed in *"./data/"*, run ```python main.py``` and subfolders will be created with the outputs described above. If doing research, change the parameters of *config.py* to test different backbones, hyper-parameters, etc.  
+2. **Adjust detection parameters**: If doing research or using your own data, change the parameters of *config.py* to test different backbones, hyper-parameters, etc. Three parameters determine the detection sub-regions in the image for both the DSMV and end-to-end object detectors: "upper_ylimit", "DSMV_ylimit" and "OD_ylimit". 
+
+<img align="center" src="https://i.imgur.com/JvbjDZz.jpg"> 
+
+
+Once your images are placed in *"./data/"*, run ```python main.py``` and subfolders will be created with the outputs described above.
+
+
+ 
 
 ### Repo author
 
