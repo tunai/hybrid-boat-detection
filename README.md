@@ -1,8 +1,8 @@
 <img height="171px" width="340px" align="right" src="https://i.imgur.com/r7IpzX8.jpg">  
 
-### Robust Detection of Marine Vessels From Visual Time Series
+### Size-invariant Detection of Marine Vessels from Visual Time Series
 
-This repo contains the implementation of our work: **Robust Detection of Marine Vessels From Visual Time Series**, by Tunai Porto Marques *et al.*, accepted for presentation at the 2021 Winter Conference on Applications of Computer Vision (WACV, January 5-9, 2021). The camera-ready version of the manuscript will be released soon. 
+This repo contains the implementation of our work: **Size-invariant Detection of Marine Vessels from Visual Time Series**, by Tunai Porto Marques *et al.*, accepted for presentation at the 2021 Winter Conference on Applications of Computer Vision (WACV, January 5-9, 2021). The camera-ready version of the manuscript will be released soon. 
 
 If the software provided proves to be useful to your work, please cite its related publication: 
 
