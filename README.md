@@ -1,4 +1,4 @@
-<img width="400px" align="right" src="https://i.imgur.com/r7IpzX8.jpg">  
+<img width="440px" align="right" src="https://i.imgur.com/r7IpzX8.jpg">  
 
 ### Size-invariant Detection of Marine Vessels from Visual Time Series
 
