@@ -72,15 +72,15 @@ site1_2018-08-21_23-25-23.jpg
 ```
 **Note**: your images need to be placed in **subfolders** from *"./data/"*. 
 
-2. **Adjust detection parameters**: If doing research or using your own data, change the parameters of *config.py* to test different backbones, hyper-parameters, etc. Three parameters determine the detection sub-regions in the image for both the DSMV and end-to-end object detectors: "upper_ylimit", "DSMV_ylimit" and "OD_ylimit". 
+2. **Adjust detection parameters**: If doing research or using your own data, change the parameters of *config.py* to test different backbones, hyper-parameters, etc. Three parameters determine the detection sub-regions in the image to be considered by both the DSMV and end-to-end object detector: "upper_ylimit", "DSMV_ylimit" and "OD_ylimit". 
 
 <img align="center" src="https://i.imgur.com/daQFqyo.png"> 
 
+Detection bounding boxes whose top-left y-coordinates fall outside these bands are ignored. When first using your data, determine the detection band you wish to use for the DSMV (usually smaller, given that small vessels are only expected farther away from the camera), and the end-to-end object detector (larger, considering that they can identify medium- and large-sized boats well). These detection bands are going to be used throught a whole detection session, thus we recommend dividing the data into individual "layouts" (e.g., camera position) where the same detection bands can be used. 
 
-Once your images are placed in *"./data/"*, run ```python main.py``` and subfolders will be created with the outputs described above.
+The "OD_detection_threshold" determines the minimum detection score from the object detectors that would charactherize a valid vessel sighting. Other parameters include the models used and directories for input and output. Refer to the "help" describing each of them.  
 
-
- 
+Once your images are placed in *"./data/"* and your inference parameters are set, run ```python main.py``` and subfolders will be created with the outputs described above.
 
 ### Repo author
 
