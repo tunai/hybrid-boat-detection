@@ -47,11 +47,11 @@ To run the detector with sample data, simply call ```python main.py```. The dete
 
 The highlighted images showing the final output of detected boats are located in *"./positiveHybrid/"*. Here's an example: 
 
-<img align="center" src="https://i.imgur.com/JvbjDZz.jpg">  
+<img align="center" src="https://github.com/tunai/storage/blob/master/images/hybrid-boat-detector/example_detection.jpg?raw=true">  
 
 Red bounding boxes indicate boats identified using small time series and a novel bi GMM system in the Detector of Small Marine Vessels (DSMV). Mid- and large-sized boats are tipically recognized with the use of pre-trained end-to-end object detectors (yellow bounding boxes). The Hybrid system combines both outputs, resulting in a system capable of identifying boats ranging from pixel-level (~80 pixels of area) to large (>1,500 pixels of area).  
 
-The output folders also contain two *.xlsx* spreadsheets ([example](https://i.imgur.com/MXT3PQc.jpg)) that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates. 
+The output folders also contain two *.xlsx* spreadsheets ([example](https://github.com/tunai/storage/blob/master/images/hybrid-boat-detector/example_spr.jpg?raw=true)) that specify, for each image, how many boats were found, the detection certainty scores and individual bounding boxes coordinates. 
 Note: **OD** indicates detection using pre-trained DL-based object detectors only, while **Hybrid** indicates the final, hybrid results. 
 
 #### Using your own data
