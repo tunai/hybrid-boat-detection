@@ -80,7 +80,7 @@ Detection bounding boxes whose top-left y-coordinates fall outside these bands a
 
 The *OD_detection_threshold* determines detection score threshold for object detectors. Other hyper-parameters include the custom- and pre-trained models used and directories for inputs and outputs. Refer to the "help" describing each of them inside *config.py*.  
 
-Once your images are placed in *"./data/"* and your inference parameters are set, run ```python main.py``` and subfolders will be created with the outputs described above.
+3. ** Running the detection**: once your images are placed in *"./data/"* and your inference parameters are set, run ```python main.py``` and subfolders will be created with the outputs described above.
 
 ### Repo author
 
