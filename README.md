@@ -74,7 +74,7 @@ site1_2018-08-21_23-25-23.jpg
 
 2. **Adjust detection parameters**: If doing research or using your own data, change the parameters of *config.py* to test different backbones, hyper-parameters, etc. Three parameters determine the detection sub-regions in the image for both the DSMV and end-to-end object detectors: "upper_ylimit", "DSMV_ylimit" and "OD_ylimit". 
 
-<img align="center" src="https://i.imgur.com/JvbjDZz.jpg"> 
+<img align="center" src="https://i.imgur.com/daQFqyo.png"> 
 
 
 Once your images are placed in *"./data/"*, run ```python main.py``` and subfolders will be created with the outputs described above.
