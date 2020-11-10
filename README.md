@@ -74,7 +74,7 @@ site1_2018-08-21_23-25-23.jpg
 
 2. **Adjusting detection parameters**: If doing research or using your own data, change the hyper-parameters of *config.py* to test different backbones, thresholds, etc. Three hyper-parameters determine the detection sub-regions in the image to be considered by both the DSMV and end-to-end object detector: *upper_ylimit*, *DSMV_ylimit* and *OD_ylimit*. 
 
-<img align="center" src="https://i.imgur.com/daQFqyo.png"> 
+<img align="center" src="https://github.com/tunai/storage/blob/master/images/hybrid-boat-detector/bands.png?raw=true"> 
 
 Detection bounding boxes whose top-left y-coordinates fall outside these bands are ignored. When first using your data, manually determine the detection bands you wish to use for the DSMV (usually smaller, given that small vessels are only expected farther away from the camera), and the end-to-end object detector (larger band, considering that these detectors can identify medium- and large-sized boats alike). These detection bands are going to be fixed throught a whole detection session, thus we recommend dividing the data into individual "layouts" (e.g., camera position), where a set of detection bands is valid. These bands are useful for ignoring irrelevant regions of the image (e.g., skyline or stactic foreground closer to the camera).  
 
