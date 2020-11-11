@@ -9,7 +9,7 @@ If the software provided proves to be useful to your work, please cite its relat
 #### BibTeX
 
 >    @inProceedings{TPMarques_WACV_2021,    
->      title={Robust Detection of Marine Vessels from Visual Time Series},    
+>      title={Size-invariant Detection of Marine Vessels from Visual Time Series},    
 >      author={Porto Marques, Tunai and Branzan Albu, Alexandra and O'Hara, Patrick and Serra, Norma and Morrow, Ben and McWhinnie, Lauren and Canessa, Rosaline},    
 >      booktitle={Proceedings of the IEEE Winter Conference on Applications of Computer Vision},      
 >      year={2021}}
