@@ -11,9 +11,9 @@ If the software provided proves to be useful to your work, please cite its relat
 >    @inProceedings{Marques_2021_WACV,    
 >      title={Size-Invariant Detection of Marine Vessels From Visual Time Series},    
 >      author={Marques, Tunai Porto and Albu, Alexandra Branzan and O'Hara, Patrick and Serra, Norma and Morrow, Ben and McWhinnie, Lauren and Canessa, Rosaline},    
->      booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 
->      month={January},
->      year={2021},
+>      booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},     
+>      month={January},    
+>      year={2021},    
 >      pages={443-453}}
 
 ### Installation and requirements
