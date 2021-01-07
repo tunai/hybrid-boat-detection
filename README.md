@@ -2,7 +2,7 @@
 
 ### Size-invariant Detection of Marine Vessels from Visual Time Series
 
-This repo contains the implementation of [our work](https://openaccess.thecvf.com/content/WACV2021/html/Marques_Size-Invariant_Detection_of_Marine_Vessels_From_Visual_Time_Series_WACV_2021_paper.html): **Size-invariant Detection of Marine Vessels from Visual Time Series**, by Tunai Porto Marques *et al.*, presented at the 2021 Winter Conference on Applications of Computer Vision (WACV, January 5-9, 2021). 
+This repo contains the implementation of our work: **Size-invariant Detection of Marine Vessels from Visual Time Series** [(paper)](https://openaccess.thecvf.com/content/WACV2021/html/Marques_Size-Invariant_Detection_of_Marine_Vessels_From_Visual_Time_Series_WACV_2021_paper.html), by Tunai Porto Marques *et al.*, presented at the 2021 Winter Conference on Applications of Computer Vision (WACV, January 5-9, 2021). 
 
 If the software provided proves to be useful to your work, please cite its related publication: 
 
